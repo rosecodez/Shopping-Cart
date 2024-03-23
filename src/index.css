@@ -23,11 +23,12 @@ a:hover {
 }
 
 body {
-  margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100px;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -65,4 +66,18 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+#root{
+  display: flex;
+}
+#header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+#search-container {
+  display: flex;
+}
+input {
+  padding-block: 5px;
 }
