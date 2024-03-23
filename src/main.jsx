@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Header from './components/header'
 import './index.css'
+import Homepage from './routes/homepage'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Header />
+    <Homepage />
   </React.StrictMode>,
 )

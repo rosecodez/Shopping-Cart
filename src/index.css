@@ -69,10 +69,12 @@ button:focus-visible {
 }
 #root{
   display: flex;
+  flex-direction: column;
+  align-items: center
 }
 #header {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   align-items: center;
 }
 #search-container {
@@ -80,4 +82,23 @@ button:focus-visible {
 }
 input {
   padding-block: 5px;
+  width: 300px;
+}
+#items{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+#item {
+  display: flex;
+  border-style: solid;
+  height: 200px;
+  width: 200px;
+  flex-direction: column;
+}
+.images {
+  cursor: pointer;
+}
+#best-deals-section {
+  display: flex;
 }
