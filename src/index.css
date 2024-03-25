@@ -63,34 +63,48 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
 }
 #header {
   display: flex;
   gap: 20px;
+  flex-direction: row;
   align-items: center;
-  padding-top: 20px;
 }
-#search-container {
+#header-left {
   display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#header-right {
+  display: flex;
+  align-items: center;
 }
 input {
   padding-block: 5px;
-  width: 300px;
+  width: 413px;
 }
 #items{
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
 }
-#item {
+.item {
   display: flex;
   border-style: solid;
-  height: 260px;
-  width: 200px;
+  max-width: 217.5px;
   flex-direction: column;
-  align-items: center;
-  gap: 7px;
+  padding: 10.5px;
+  justify-content: space-between;
+  gap: 10px;
+}
+.item-name-container {
+  display: block;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 2.8em;
+  -webkit-line-clamp: 2;
 }
 .images {
   cursor: pointer;
@@ -98,8 +112,12 @@ input {
 #best-deals-section {
   display: flex;
   flex-direction: column;
-  width: 700px;
+  max-width: 784px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .fetchedImages {
-  width: 150px;
+  height: 200px;
+  object-fit: contain;
+  min-width: 150px;
 }

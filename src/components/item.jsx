@@ -32,8 +32,10 @@ export default function Item({ itemUrl }) {
     return (
         imageURL && title && price && (
         <div className="item">
-            <div className="item-name">{title}</div>
-            <div className="item-price">{price}$</div>
+            <div className="item-name-container">
+                <div className="item-name">{title}</div>
+            </div>
+            <div className="item-price">${price}</div>
             <div className="bottom-item"></div>
             <img src={imageURL} className="fetchedImages" alt={"placeholder text"} />
         </div>
