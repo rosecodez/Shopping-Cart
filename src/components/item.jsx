@@ -3,6 +3,8 @@ import { useState } from "react";
 
 export default function Item({ itemUrl }) {
     const [imageURL, setImageURL] = useState(null);
+    const [title, setTitle] = useState(null);
+    const [price, setPrice] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -14,7 +16,11 @@ export default function Item({ itemUrl }) {
                 }
                 return response.json();
             })
-            .then((response) => setImageURL(response.image))
+            .then((response) => {
+                setImageURL(response.image);
+                setTitle(response.title);
+                setPrice(response.price);
+            })
             .catch((error) => setError(error))
             .finally(() => setLoading(false));
 
@@ -24,10 +30,10 @@ export default function Item({ itemUrl }) {
     if (loading) return <p>Loading...</p>;
 
     return (
-        imageURL && (
+        imageURL && title && price && (
         <div className="item">
-            <div className="item-name">Item Name</div>
-            <div className="item-price">Item Price</div>
+            <div className="item-name">{title}</div>
+            <div className="item-price">{price}$</div>
             <div className="bottom-item"></div>
             <img src={imageURL} className="fetchedImages" alt={"placeholder text"} />
         </div>
