@@ -8,9 +8,11 @@ export default function Item({ itemUrl }) {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // fetch products title,price and image from fake shop API
     useEffect(() => {
         fetch(itemUrl, { mode: "cors" })
             .then((response) => {
+                console.log(response)
                 if (response.status >= 400) {
                     throw new Error("server error");
                 }
@@ -26,7 +28,9 @@ export default function Item({ itemUrl }) {
 
     }, [itemUrl]);
 
+    // return network error text if there is an error while fetching data
     if (error) return <p>A network error was encountered</p>;
+    // display loading text until data is fetched
     if (loading) return <p>Loading...</p>;
 
     return (
@@ -36,7 +40,7 @@ export default function Item({ itemUrl }) {
                 <div className="item-name">{title}</div>
             </div>
             <div className="item-price">${price}</div>
-            <div className="bottom-item"></div>
+            <button className="add-to-cart">Add to cart</button>
             <img src={imageURL} className="fetchedImages" alt={"placeholder text"} />
         </div>
     )
