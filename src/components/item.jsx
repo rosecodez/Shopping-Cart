@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function Item({ itemUrl }) {
+export default function Item({ itemUrl, addToCart }) {
     const [imageURL, setImageURL] = useState(null);
     const [title, setTitle] = useState(null);
     const [price, setPrice] = useState(null);
@@ -12,21 +12,25 @@ export default function Item({ itemUrl }) {
     useEffect(() => {
         fetch(itemUrl, { mode: "cors" })
             .then((response) => {
-                console.log(response)
+                // cath error if there is no response
                 if (response.status >= 400) {
                     throw new Error("server error");
                 }
                 return response.json();
             })
-            .then((response) => {
-                setImageURL(response.image);
-                setTitle(response.title);
-                setPrice(response.price);
+            .then((data) => {
+                setImageURL(data.image);
+                setTitle(data.title);
+                setPrice(data.price);
             })
             .catch((error) => setError(error))
             .finally(() => setLoading(false));
 
-    }, [itemUrl]);
+    }, [itemUrl, imageURL, title, price]);
+
+    function handleAddToCart() {
+        addToCart({ title, price, imageURL });
+    }
 
     // return network error text if there is an error while fetching data
     if (error) return <p>A network error was encountered</p>;
@@ -40,7 +44,7 @@ export default function Item({ itemUrl }) {
                 <div className="item-name">{title}</div>
             </div>
             <div className="item-price">${price}</div>
-            <button className="add-to-cart">Add to cart</button>
+            <button onClick={handleAddToCart} className="add-to-cart">Add to cart</button>
             <img src={imageURL} className="fetchedImages" alt={"placeholder text"} />
         </div>
     )
