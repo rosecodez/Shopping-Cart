@@ -3,7 +3,7 @@ import notifications from "../assets/notifications.png";
 import profile from "../assets/customer.png";
 import cart from "../assets/cart.png";
 
-export default function Header() {
+export default function Header({ cartTotal }) {
     return (
         <section id="header">
             <div id="header-left">
@@ -26,9 +26,9 @@ export default function Header() {
                     width={40} />
                 <img src={cart} className="images" alt="cart"
                     width={40}/>
-                <div id="shopping-cart" className="images" style={{visibility: "hidden"}}>
-                    <div id="total-items">items</div>
-                    <div id="total-price">price</div>
+                <div id="shopping-cart" className="images">
+                    <div id="total-items">Items: </div>
+                    <div id="total-price">Total: {cartTotal}</div>
                 </div>
             </div>
         </section>
