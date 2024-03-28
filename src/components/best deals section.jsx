@@ -18,7 +18,7 @@ export default function BestDealsSection({ setCartTotal }) {
 
     useEffect(() => {
         const newTotal = cart.reduce((total, cartItem) => total + cartItem.price, 0);
-        setCartTotal(newTotal.toFixed(1));
+        setCartTotal(newTotal.toFixed(0));
     }, [cart, setCartTotal]);
 
     
