@@ -59,10 +59,15 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+body {
+  display: flex;
+  justify-content: center;
+}
+
 #root{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 1000px;
 }
 #header {
   display: flex;
@@ -77,6 +82,7 @@ button:focus-visible {
 }
 #header-right {
   display: flex;
+  gap: 10px;
   align-items: center;
 }
 input {
@@ -121,3 +127,4 @@ input {
   object-fit: contain;
   min-width: 150px;
 }
+

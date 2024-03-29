@@ -28,7 +28,7 @@ export default function Header({ cartTotal }) {
                     width={40}/>
                 <div id="shopping-cart" className="images">
                     <div id="total-items">Items: </div>
-                    <div id="total-price">Total: {cartTotal}</div>
+                    <div id="total-price">Total: {cartTotal}$</div>
                 </div>
             </div>
         </section>

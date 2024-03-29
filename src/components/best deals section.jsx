@@ -11,11 +11,11 @@ export default function BestDealsSection({ setCartTotal }) {
         'https://fakestoreapi.com/products/14'
     ];
     const [cart, setCart] = useState([]);
-
+    
     const addToCart = (item) => {
-            setCart(prevCart => [...prevCart, item]);
-        };
-
+        setCart(prevCart => [...prevCart, item]);
+    };
+    
     useEffect(() => {
         const newTotal = cart.reduce((total, cartItem) => total + cartItem.price, 0);
         setCartTotal(newTotal.toFixed(0));
