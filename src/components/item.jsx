@@ -31,12 +31,8 @@ export default function Item({ itemUrl, addToCart}) {
         console.log("Adding item to cart:", { title, price, imageURL });
         const newItem = { title, price, imageURL };
         // existing items from local storage
-        const existingItems = JSON.parse(localStorage.getItem('items')) || [];
         // add new item to existing items array
-        const updatedItems = [...existingItems, newItem];
         // store updated items array in local storage
-        localStorage.setItem('items', JSON.stringify(updatedItems));
-        console.log("Updated items:", updatedItems);
         // Add item to cart
         addToCart(newItem); 
     }
