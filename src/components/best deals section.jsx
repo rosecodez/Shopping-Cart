@@ -19,7 +19,8 @@ export default function BestDealsSection({ setCartTotal }) {
         
         // Calculate total cart value based on items in local storage
         const total = savedCart.reduce((acc, item) => acc + item.price, 0);
-        setCartTotal(total.toFixed(2)); // Set total cart value
+        // Set total cart value
+        setCartTotal(total.toFixed(2));
     }, [setCartTotal]);
 
     // Function to add item to cart
@@ -34,7 +35,8 @@ export default function BestDealsSection({ setCartTotal }) {
         
         // Store updated cart in local storage
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-        localStorage.setItem('cartTotal', newTotal.toFixed(2)); // Also update total in local storage
+        // Also update total in local storage
+        localStorage.setItem('cartTotal', newTotal.toFixed(2));
     };
     
     return (

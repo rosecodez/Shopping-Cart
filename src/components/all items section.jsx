@@ -18,16 +18,32 @@ export default function AllItemsSection({ setCartTotal }) {
     ];
     const [cart, setCart] = useState([]);
     
-    const addToCart = (item) => {
-        setCart(prevCart => [...prevCart, item]);
-    };
-    
+    // Initialize cart state from local storage on component mount
     useEffect(() => {
-        const newTotal = cart.reduce((total, cartItem) => total + cartItem.price, 0);
-        setCartTotal(newTotal.toFixed(0));
-    }, [cart, setCartTotal]);
+        const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        setCart(savedCart);
+        
+        // Calculate total cart value based on items in local storage
+        const total = savedCart.reduce((acc, item) => acc + item.price, 0);
+        // Set total cart value
+        setCartTotal(total.toFixed(2));
+    }, [setCartTotal]);
 
-    
+    // Function to add item to cart
+    const addToCart = (item) => {
+        // Update cart state
+        const updatedCart = [...cart, item];
+        setCart(updatedCart);
+        
+        // Calculate total cart value
+        const newTotal = updatedCart.reduce((acc, item) => acc + item.price, 0);
+        setCartTotal(newTotal.toFixed(2)); // Update total cart value
+        
+        // Store updated cart in local storage
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        // Also update total in local storage
+        localStorage.setItem('cartTotal', newTotal.toFixed(2));
+    };
 
     return (
         <section id="all-items-section">
