@@ -1,6 +1,6 @@
 import Item from "./item";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
 export default function BestDealsSection({ setCartTotal }) {
     const itemsArray = [
         'https://fakestoreapi.com/products/9',
@@ -11,17 +11,32 @@ export default function BestDealsSection({ setCartTotal }) {
         'https://fakestoreapi.com/products/14'
     ];
     const [cart, setCart] = useState([]);
-    
+
+    // Initialize cart state from local storage on component mount
+    useEffect(() => {
+        const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        setCart(savedCart);
+        
+        // Calculate total cart value based on items in local storage
+        const total = savedCart.reduce((acc, item) => acc + item.price, 0);
+        setCartTotal(total.toFixed(2)); // Set total cart value
+    }, [setCartTotal]);
+
+    // Function to add item to cart
     const addToCart = (item) => {
-        setCart(prevCart => [...prevCart, item]);
+        // Update cart state
+        const updatedCart = [...cart, item];
+        setCart(updatedCart);
+        
+        // Calculate total cart value
+        const newTotal = updatedCart.reduce((acc, item) => acc + item.price, 0);
+        setCartTotal(newTotal.toFixed(2)); // Update total cart value
+        
+        // Store updated cart in local storage
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        localStorage.setItem('cartTotal', newTotal.toFixed(2)); // Also update total in local storage
     };
     
-    useEffect(() => {
-        const newTotal = cart.reduce((total, cartItem) => total + cartItem.price, 0);
-        setCartTotal(newTotal.toFixed(0));
-    }, [cart, setCartTotal]);
-    
-
     return (
         <section id="best-deals-section">
             <h4>Today's best deals</h4>

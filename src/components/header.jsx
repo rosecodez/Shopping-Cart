@@ -36,9 +36,9 @@ export default function Header({ cartTotal }) {
                 <img src={cart} className="images" alt="cart"
                     width={40}/>
                 <div id="shopping-cart" className="images">
-                <div id="total-items">Items: </div>
-                <div id="total-price">Total: {cartTotal}$</div> {/* Display cartTotal */}
-            </div>
+                    <div id="total-items">Items: </div>
+                    <div id="total-price">Total: {cartTotal}$</div>
+                </div>
             </div>
         </section>
         <Link to = "page/shop-page">
