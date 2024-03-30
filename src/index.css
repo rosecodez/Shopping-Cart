@@ -102,6 +102,7 @@ input {
   padding: 10.5px;
   justify-content: space-between;
   gap: 10px;
+  width: 219px;
 }
 .item-name-container {
   display: block;
@@ -115,7 +116,7 @@ input {
 .images {
   cursor: pointer;
 }
-#best-deals-section {
+#best-deals-section, #all-items-section {
   display: flex;
   flex-direction: column;
   max-width: 784px;
@@ -127,4 +128,6 @@ input {
   object-fit: contain;
   min-width: 150px;
 }
-
+#all-items-button {
+  width: 184px;
+}

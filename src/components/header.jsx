@@ -2,12 +2,20 @@ import search from "../assets/search.png";
 import notifications from "../assets/notifications.png";
 import profile from "../assets/customer.png";
 import cart from "../assets/cart.png";
+import { Outlet } from "react-router-dom";
 
+import { Link } from "react-router-dom";
 export default function Header({ cartTotal }) {
     return (
+        <>
         <section id="header">
             <div id="header-left">
-                <h2 id="store-logo">Shopping Cart</h2>
+                <div>
+                    <Link to="/">
+                        <h2 id="store-logo">Shopping Cart</h2>
+                    </Link>
+                </div>
+                
                 <div id="search-container">
                 <input type="search"  placeholder="Search" 
                     style={{backgroundImage: `url(${search})`,
@@ -32,5 +40,13 @@ export default function Header({ cartTotal }) {
                 </div>
             </div>
         </section>
+        <Link to = "page/shop-page">
+            <button className="all-items-button">All our items</button>
+        </Link>
+        <Link to = "page/homepage">
+            <button className="all-items-button">Today's deals</button>
+        </Link>
+        <Outlet></Outlet>
+        </>
     )
 }
