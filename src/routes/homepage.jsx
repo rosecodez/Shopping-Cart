@@ -1,11 +1,9 @@
-import BestDealsSection from "../components/best deals section"
-import { useState } from "react";
+import BestDealsSection from "../components/best deals section";
 
-export default function Homepage() {
-    const [cartTotal, setCartTotal] = useState(0);
+export default function Homepage({ setCartTotal }) {
     return (
-        <>
+        <div>
             <BestDealsSection setCartTotal={setCartTotal} />
-        </>
-    )
+        </div>
+    );
 }

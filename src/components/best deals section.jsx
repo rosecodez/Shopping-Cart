@@ -1,7 +1,6 @@
 import Item from "./item";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 export default function BestDealsSection({ setCartTotal }) {
     const itemsArray = [
         'https://fakestoreapi.com/products/9',

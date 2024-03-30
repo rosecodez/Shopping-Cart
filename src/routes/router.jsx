@@ -1,36 +1,32 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-import App from "../routes/App.jsx";
-
+import { useState } from "react";
 import Header from "../components/header.jsx";
-import BestDealsSection from "../components/best deals section.jsx";
-
 import Homepage from "../routes/homepage.jsx"
 import ShopPage from "./shop page.jsx";
-
 import ErrorPage from "./error-page.jsx";
 
-const Router =() => {
+const Router = () => {
+  const [cartTotal, setCartTotal] = useState(0);
     const router = createBrowserRouter([
         {
           path: "/",
           /* this should be the 'root' route, but i just made the header the root
             since its the only element that is being always displayed for now
           */
-          element: <Header />,
+          element: <Header cartTotal={cartTotal}/>,
           errorElement: <ErrorPage />,
 
           children: [
             {
-            path: "page/homepage",
-            element: <Homepage />,
+                path: "page/homepage",
+                element: <Homepage setCartTotal={setCartTotal} />,
             },
             {
                 path: "page/shop-page",
-                element: <ShopPage />,
+                element: <ShopPage setCartTotal={setCartTotal} />,
             },
-          ]
-          },
+        ],
+        },
         
       ]);
     
