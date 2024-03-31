@@ -30,9 +30,6 @@ export default function Item({ itemUrl, addToCart}) {
     function handleAddToCart() {
         console.log("Adding item to cart:", { title, price, imageURL });
         const newItem = { title, price, imageURL };
-        // existing items from local storage
-        // add new item to existing items array
-        // store updated items array in local storage
         // Add item to cart
         addToCart(newItem); 
     }

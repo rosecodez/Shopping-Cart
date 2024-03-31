@@ -116,7 +116,7 @@ input {
 .images {
   cursor: pointer;
 }
-#best-deals-section, #all-items-section {
+#best-deals-section, #all-items-section, #checkout-section {
   display: flex;
   flex-direction: column;
   max-width: 784px;

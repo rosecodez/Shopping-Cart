@@ -35,10 +35,13 @@ export default function Header({ cartTotal }) {
                     width={40} />
                 <img src={cart} className="images" alt="cart"
                     width={40}/>
-                <div id="shopping-cart" className="images">
-                    <div id="total-items">Items: </div>
-                    <div id="total-price">Total: {cartTotal}$</div>
-                </div>
+                <Link to="page/checkout-page">
+                    <div id="shopping-cart" className="images">
+                        <div id="total-items">Items: </div>
+                        <div id="total-price">Total: {cartTotal}$</div>
+                    </div>
+                </Link>
+                
             </div>
         </section>
         <Link to = "page/shop-page">

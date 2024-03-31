@@ -4,6 +4,7 @@ import Header from "../components/header.jsx";
 import Homepage from "../routes/homepage.jsx"
 import ShopPage from "./shop page.jsx";
 import ErrorPage from "./error-page.jsx";
+import CheckoutPage from "./checkout-page.jsx";
 
 const Router = () => {
   const [cartTotal, setCartTotal] = useState(0);
@@ -18,12 +19,16 @@ const Router = () => {
 
           children: [
             {
-                path: "page/homepage",
-                element: <Homepage setCartTotal={setCartTotal} />,
+              path: "page/homepage",
+              element: <Homepage setCartTotal={setCartTotal} />,
             },
             {
-                path: "page/shop-page",
-                element: <ShopPage setCartTotal={setCartTotal} />,
+              path: "page/shop-page",
+              element: <ShopPage setCartTotal={setCartTotal} />,
+            },
+            {
+              path: "page/checkout-page",
+              element: <CheckoutPage />,
             },
         ],
         },
