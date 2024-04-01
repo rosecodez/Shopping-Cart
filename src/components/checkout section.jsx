@@ -2,31 +2,25 @@ import { useState, useEffect } from "react";
 
 export default function CheckoutSection() {
     const [cartItems, setCartItems] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
+        // Initialize cart items from local storage when component mounts
         const savedCart = localStorage.getItem('cart');
         if (savedCart) {
             try {
                 const parsedCart = JSON.parse(savedCart);
-                console.log(parsedCart);
-                const itemMap = new Map();
-                parsedCart.forEach(item => {
-                    const imageUrl = item.imageURL;
-                    if (itemMap.has(imageUrl)) {
-                        itemMap.set(imageUrl, itemMap.get(imageUrl) + 1);
-                    } else {
-                        itemMap.set(imageUrl, 1);
-                    }
-                });
-                const uniqueItems = Array.from(itemMap.entries()).map(([imageUrl, count]) => 
-                    ({ imageUrl, count, title: parsedCart.find(item => item.imageURL === imageUrl).title }));
-                setCartItems(uniqueItems);
+                setCartItems(parsedCart);
+
+                // Calculate total price
+                const totalPrice = parsedCart.reduce((acc, item) => acc + item.price * item.count, 0);
+                setTotalPrice(totalPrice.toFixed(2));
             } catch (error) {
                 console.error("Error parsing cart data:", error);
             }
         }
     }, []);
-    
+
     // Function to add an item to the cart
     const addToCart = (item) => {
         const existingItemIndex = cartItems.findIndex(cartItem => cartItem.imageUrl === item.imageUrl);
@@ -40,6 +34,10 @@ export default function CheckoutSection() {
             const updatedCart = [...cartItems, { ...item, count: 1 }];
             setCartItems(updatedCart);
         }
+
+        // Recalculate total price
+        const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.count, 0);
+        setTotalPrice(totalPrice.toFixed(2));
 
         // Update cart data in local storage
         localStorage.setItem('cart', JSON.stringify(cartItems));
@@ -64,8 +62,8 @@ export default function CheckoutSection() {
                     </div>
                 ))}
             </div>
+            <p>Total Price: ${totalPrice}</p>
             <button id="send-order">Send order</button>
-
         </section>
     );
 }
