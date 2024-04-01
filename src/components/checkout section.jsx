@@ -29,20 +29,12 @@ export default function CheckoutSection() {
     
     // Function to add an item to the cart
     const addToCart = (item) => {
-        const existingItemIndex = cartItems.findIndex(cartItem => cartItem.imageUrl === item.imageUrl);
-        if (existingItemIndex !== -1) {
-            // If the item already exists in the cart, increment its count
-            const updatedCart = [...cartItems];
-            updatedCart[existingItemIndex].count++;
-            setCartItems(updatedCart);
-        } else {
-            // If the item is not in the cart, add it with a count of 1
-            const updatedCart = [...cartItems, { ...item, count: 1 }];
-            setCartItems(updatedCart);
-        }
+        const updatedCart = [...cartItems, item]; 
+        setCartItems(updatedCart);
 
         // Update cart data in local storage
-        localStorage.setItem('cart', JSON.stringify(cartItems));
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        
     };
 
     return (
@@ -57,7 +49,7 @@ export default function CheckoutSection() {
                         </div>
                         <img src={item.imageUrl} className="checkout-fetchedImages" alt={`Item ${index}`} />
                         <div id="item-buttons">
-                            <button onClick={() => addToCart(item)} className="add-to-checkout-btn">Add</button>
+                            <button onClick={addToCart} className="add-to-checkout-btn">Add</button>
                             <button className="delete-to-checkout-btn">Delete</button>
                         </div>
                         <p className="item-price">Quantity: {item.count}</p>
