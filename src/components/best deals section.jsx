@@ -2,6 +2,7 @@ import Item from "./item";
 import { useState, useEffect } from "react";
 
 export default function BestDealsSection({ setCartTotal }) {
+    console.log("setCartTotal in best deals section is: " + setCartTotal)
     const itemsArray = [
         'https://fakestoreapi.com/products/9',
         'https://fakestoreapi.com/products/10',

@@ -89,10 +89,14 @@ input {
   padding-block: 5px;
   width: 413px;
 }
-#items{
+#items {
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
+}
+#checkout-items {
+  display: flex;
+  flex-wrap: wrap;
 }
 .item {
   display: flex;
@@ -116,18 +120,58 @@ input {
 .images {
   cursor: pointer;
 }
-#best-deals-section, #all-items-section, #checkout-section {
+#best-deals-section, #all-items-section {
   display: flex;
   flex-direction: column;
   max-width: 784px;
   flex-wrap: wrap;
   gap: 10px;
 }
+#checkout-section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 920px;
+}
 .fetchedImages {
   height: 200px;
   object-fit: contain;
   min-width: 150px;
 }
+.checkout-fetchedImages {
+  height: 70px;
+  object-fit: contain;
+}
 #all-items-button {
   width: 184px;
+}
+.checkout-item {
+  display: flex;
+  border-style: solid;
+  max-width: 217.5px;
+  flex-direction: column;
+  padding: 10.5px;
+  width: 102px;
+  gap: 15px;
+}
+#page-buttons {
+  display: flex;
+  gap: 20px;
+}
+#item-buttons {
+  display: flex;
+  gap: 7px;
+  flex-direction: column;
+}
+.add-to-checkout-btn, .delete-to-checkout-btn {
+  height: 38px;
+  width: 84px;
+}
+#send-order {
+  width: 189px;
+  height: 50px;
+}
+button {
+  background-color: #7177e2f8;
 }

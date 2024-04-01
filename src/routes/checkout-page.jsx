@@ -1,9 +1,10 @@
 import CheckoutSection from "../components/checkout section";
 
-export default function CheckoutPage({ setCartTotal }) {
+export default function CheckoutPage() {
+
     return (
         <div>
-            <CheckoutSection setCartTotal={setCartTotal} />
+            <CheckoutSection/>
         </div>
     );
 }

@@ -17,6 +17,6 @@ describe('Header component', () => {
     screen.getByText("All our items");
     screen.getByText("Today's deals");
     screen.getByText("Today's deals");
-    screen.getByPlaceholderText(('Search'))
+    screen.getByPlaceholderText(('Search'));
   });
 });

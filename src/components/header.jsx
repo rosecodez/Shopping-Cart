@@ -44,12 +44,15 @@ export default function Header({ cartTotal }) {
                 
             </div>
         </section>
-        <Link to = "page/shop-page">
+        <div id="page-buttons">
+            <Link to = "page/shop-page">
             <button className="all-items-button">All our items</button>
-        </Link>
-        <Link to = "page/homepage">
-            <button className="all-items-button">Today's deals</button>
-        </Link>
+            </Link>
+            <Link to = "page/homepage">
+                <button className="all-items-button">Today's deals</button>
+            </Link>
+        </div>
+
         <Outlet></Outlet>
         </>
     )
