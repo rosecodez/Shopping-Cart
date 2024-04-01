@@ -7,12 +7,24 @@ export default function CheckoutSection() {
     useEffect(() => {
         // Initialize cart items from local storage when component mounts
         const savedCart = localStorage.getItem('cart');
+        console.log("Saved Cart:", savedCart);
         if (savedCart) {
             try {
                 const parsedCart = JSON.parse(savedCart);
                 if (Array.isArray(parsedCart)) {
-                    // Set the cart items directly
-                    setCartItems(parsedCart);
+                    const itemMap = new Map();
+                    parsedCart.forEach(item => {
+                        const imageUrl = item.imageURL;
+                        if (itemMap.has(imageUrl)) {
+                            itemMap.set(imageUrl, itemMap.get(imageUrl) + 1);
+                        } else {
+                            itemMap.set(imageUrl, 1);
+                        }
+                    });
+                    const uniqueItems = Array.from(itemMap.entries()).map(([imageUrl, count]) =>
+                        ({ imageUrl, count, title: parsedCart.find(item => item.imageURL === imageUrl).title, price: parsedCart.find(item => item.imageURL === imageUrl).price }));
+                    setCartItems(uniqueItems);
+                    console.log("Parsed Cart:", parsedCart);
                 } else {
                     setCartItems([]);
                 }
@@ -30,20 +42,22 @@ export default function CheckoutSection() {
         setTotalPrice(total.toFixed(2));
     }, [cartItems]);
 
-    // Function to add an item to the cart
     const addToCart = (item) => {
-        let updatedCart = [...cartItems];
-        const existingItemIndex = updatedCart.findIndex(cartItem => cartItem.imageUrl === item.imageUrl);
-        if (existingItemIndex !== -1) {
-            updatedCart[existingItemIndex].count++;
-        } else {
-            // If the item is not in the cart, add it with a count of 1
-            updatedCart = [...updatedCart, { ...item, count: 1 }];
-        }
-
-        localStorage.setItem('cart', JSON.stringify(updatedCart)); // Store updated cart
-        setCartItems(updatedCart);
+        setCartItems(prevCartItems => {
+            const existingItemIndex = prevCartItems.findIndex(cartItem => cartItem.imageUrl === item.imageUrl);
+    
+            if (existingItemIndex !== -1) {
+                // If the item already exists, increment its count
+                const updatedCart = [...prevCartItems];
+                updatedCart[existingItemIndex].count++;
+                return updatedCart;
+            } else {
+                // If the item is not in the cart, add it with a count of 1
+                return [...prevCartItems, { ...item, count: 1 }];
+            }
+        });
     };
+    
 
     return (
         <section id="checkout-section">

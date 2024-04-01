@@ -32,7 +32,8 @@ export default function BestDealsSection({ setCartTotal }) {
         
         // Calculate total cart value
         const newTotal = updatedCart.reduce((acc, item) => acc + item.price, 0);
-        setCartTotal(newTotal.toFixed(2)); // Update total cart value
+        // Update total cart value
+        setCartTotal(newTotal.toFixed(2));
         
         // Store updated cart in local storage
         localStorage.setItem('cart', JSON.stringify(updatedCart));
