@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 export default function CheckoutSection() {
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
@@ -57,7 +57,10 @@ export default function CheckoutSection() {
             }
         });
     };
-    
+    const sendOrder =() => {
+        console.log("local storage was cleared!")
+        localStorage.clear();
+    }
 
     return (
         <section id="checkout-section">
@@ -79,7 +82,9 @@ export default function CheckoutSection() {
                 ))}
             </div>
             <p>Total Price: ${totalPrice}</p>
-            <button id="send-order">Send order</button>
+            <Link to = "/page/thankyou-page">
+                <button onClick={sendOrder} id="send-order">Send order</button>
+            </Link>
         </section>
     );
 }

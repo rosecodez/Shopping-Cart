@@ -1,14 +1,33 @@
-/* eslint-disable react/no-unescaped-entities */
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ErrorPage = () => {
+  const navigate = useNavigate();
+  const [countdown, setCountdown] = useState(5);
+
+  useEffect(() => {
+    const redirectTimer = setInterval(() => {
+      setCountdown(prevCountdown => prevCountdown - 1);
+    }, 1000);
+
+    return () => clearInterval(redirectTimer);
+  }, []);
+
+  useEffect(() => {
+    if (countdown === 0) {
+      navigate('/page/homepage');
+    }
+  }, [countdown, navigate]);
+
   return (
-    <div>
-      <h1>Oh no, this route doesn't exist!</h1>
-      <Link to="/">
-        You can go back to the home page by clicking here, though!
-      </Link>
-    </div>
+  <div>
+    <h3>
+      Oh no, this route doesn't exist!
+    </h3>
+    <h5>
+      You will be redirected in {countdown}{' '}  seconds to the main page
+    </h5>
+  </div>
   );
 };
 

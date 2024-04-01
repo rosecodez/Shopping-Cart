@@ -5,6 +5,7 @@ import Homepage from "../routes/homepage.jsx"
 import ShopPage from "./shop page.jsx";
 import ErrorPage from "./error-page.jsx";
 import CheckoutPage from "./checkout-page.jsx";
+import ThankYouPage from "./thankyou-page.jsx";
 
 const Router = () => {
   const [cartTotal, setCartTotal] = useState(0);
@@ -29,6 +30,10 @@ const Router = () => {
             {
               path: "page/checkout-page",
               element: <CheckoutPage />,
+            },
+            {
+              path: "page/thankyou-page",
+              element: <ThankYouPage />,
             },
         ],
         },
