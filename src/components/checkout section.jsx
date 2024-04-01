@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 export default function CheckoutSection() {
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
+        // Initialize cart items from local storage when component mounts
         const savedCart = localStorage.getItem('cart');
         if (savedCart) {
             try {
@@ -46,7 +48,9 @@ export default function CheckoutSection() {
         if (existingItemIndex !== -1) {
             updatedCart[existingItemIndex].count++;
         } else {
-            updatedCart.push({ ...item, count: 1 });
+            // If the item is not in the cart, add it with a count of 1
+            const updatedCart = [...cartItems, { ...item, count: 1 }];
+            setCartItems(updatedCart);
         }
 
         localStorage.setItem('cart', JSON.stringify(updatedCart));
@@ -72,6 +76,7 @@ export default function CheckoutSection() {
                     </div>
                 ))}
             </div>
+            <p>Total Price: ${totalPrice}</p>
             <p>Total Price: ${totalPrice}</p>
             <button id="send-order">Send order</button>
         </section>
