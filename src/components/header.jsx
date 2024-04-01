@@ -5,7 +5,7 @@ import cart from "../assets/cart.png";
 import { Outlet } from "react-router-dom";
 
 import { Link } from "react-router-dom";
-export default function Header({ cartTotal }) {
+export default function Header({ totalPrice }) {
     
     return (
         <>
@@ -38,7 +38,7 @@ export default function Header({ cartTotal }) {
                 <Link to="page/checkout-page">
                     <div id="shopping-cart" className="images">
                         <div id="total-items">Items: </div>
-                        <div id="total-price">Total: {cartTotal}$</div>
+                        <div id="total-price">Total: {totalPrice}$</div>
                     </div>
                 </Link>
                 

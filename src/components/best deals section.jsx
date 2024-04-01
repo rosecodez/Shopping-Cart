@@ -23,28 +23,21 @@ export default function BestDealsSection({ setCartTotal }) {
         setCartTotal(total.toFixed(2));
     }, [setCartTotal]);
 
-    // Function to add an item to the cart
+
+    // Function to add item to cart
     const addToCart = (item) => {
-        const existingItemIndex = cartItems.findIndex(cartItem => cartItem.imageUrl === item.imageUrl);
-        let updatedCart = [];
-        if (existingItemIndex !== -1) {
-            // If the item already exists in the cart, increment its count
-            updatedCart = [...cartItems];
-            updatedCart[existingItemIndex].count++;
-        } else {
-            // If the item is not in the cart, add it with a count of 1
-            updatedCart = [...cartItems, { ...item, count: 1 }];
-        }
-
-        // Update cart data in local storage using the updated cart
+        // Update cart state
+        const updatedCart = [...cart, item];
+        setCart(updatedCart);
+        
+        // Calculate total cart value
+        const newTotal = updatedCart.reduce((acc, item) => acc + item.price, 0);
+        setCartTotal(newTotal.toFixed(2)); // Update total cart value
+        
+        // Store updated cart in local storage
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-
-        // Recalculate total price using the updated cart
-        const totalPrice = updatedCart.reduce((acc, item) => acc + item.price * item.count, 0);
-        setTotalPrice(totalPrice.toFixed(2));
-
-        // Finally, update the cart items state
-        setCartItems(updatedCart);
+        // Also update total in local storage
+        localStorage.setItem('cartTotal', newTotal.toFixed(2));
     };
     
     return (

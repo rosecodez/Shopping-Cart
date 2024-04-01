@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 export default function CheckoutSection() {
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
-    const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
         // Initialize cart items from local storage when component mounts
@@ -12,18 +11,8 @@ export default function CheckoutSection() {
             try {
                 const parsedCart = JSON.parse(savedCart);
                 if (Array.isArray(parsedCart)) {
-                    const itemMap = new Map();
-                    parsedCart.forEach(item => {
-                        const imageUrl = item.imageURL;
-                        if (itemMap.has(imageUrl)) {
-                            itemMap.set(imageUrl, itemMap.get(imageUrl) + 1);
-                        } else {
-                            itemMap.set(imageUrl, 1);
-                        }
-                    });
-                    const uniqueItems = Array.from(itemMap.entries()).map(([imageUrl, count]) =>
-                        ({ imageUrl, count, title: parsedCart.find(item => item.imageURL === imageUrl).title, price: parsedCart.find(item => item.imageURL === imageUrl).price }));
-                    setCartItems(uniqueItems);
+                    // Set the cart items directly
+                    setCartItems(parsedCart);
                 } else {
                     setCartItems([]);
                 }
@@ -43,17 +32,16 @@ export default function CheckoutSection() {
 
     // Function to add an item to the cart
     const addToCart = (item) => {
-        const updatedCart = [...cartItems];
+        let updatedCart = [...cartItems];
         const existingItemIndex = updatedCart.findIndex(cartItem => cartItem.imageUrl === item.imageUrl);
         if (existingItemIndex !== -1) {
             updatedCart[existingItemIndex].count++;
         } else {
             // If the item is not in the cart, add it with a count of 1
-            const updatedCart = [...cartItems, { ...item, count: 1 }];
-            setCartItems(updatedCart);
+            updatedCart = [...updatedCart, { ...item, count: 1 }];
         }
 
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        localStorage.setItem('cart', JSON.stringify(updatedCart)); // Store updated cart
         setCartItems(updatedCart);
     };
 
@@ -76,7 +64,6 @@ export default function CheckoutSection() {
                     </div>
                 ))}
             </div>
-            <p>Total Price: ${totalPrice}</p>
             <p>Total Price: ${totalPrice}</p>
             <button id="send-order">Send order</button>
         </section>
