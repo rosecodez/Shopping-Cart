@@ -25,15 +25,17 @@ describe('Header component', () => {
 describe('Header section buttons', () => {
   const buttonsClassName = "all-items-buttons";
 
-  it('should display the button "All our items" with the className of ' + buttonsClassName), () => {
+  it('should display the button "All our items" with the className of ' + buttonsClassName + " and link to shop-page"), () => {
     const button1 = screen.getByRole('button', {name: button1})
     expect(button1).toBeInTheDocument();
     expect(button1).toHaveClass(buttonsClassName)
+    expect(button1).toHaveAttribute('href', "/page/shop-page");
   }
-  it(`should display the button "Today's deals" with the className of ` + buttonsClassName), () => {
+  it(`should display the button "Today's deals" with the className of ` + buttonsClassName + " and link to homepage "),() => {
     const button2 = screen.getByRole('button', {name: "Today's deals"})
     expect(button2).toBeInTheDocument();
     expect(button2).toHaveClass(buttonsClassName);
+    expect(button2).toHaveAttribute('href', "/page/homepage");
   }
 
 })
