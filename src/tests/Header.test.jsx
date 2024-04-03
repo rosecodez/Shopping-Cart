@@ -2,21 +2,38 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom'; 
 import Header from '../components/header';
 import { describe, it, expect } from 'vitest';
+import userEvent from '@testing-library/user-event'
 
+
+// the header is the parent component
+// contains buttons for the other sections rendering
+
+render(
+    <MemoryRouter> 
+      <Header />
+    </MemoryRouter>
+  );
 describe('Header component', () => {
-  it('renders the Header component "Shopping Cart and other elements"', () => {
-    render(
-      // wrap header component in a memory router from react router because of the use of link
-      // https://stackoverflow.com/questions/75728532/error-message-uncaught-typeerror-cannot-destructure-property-basename-of-re
-      <MemoryRouter> 
-        <Header />
-      </MemoryRouter>
-    );
-    expect(screen.getByRole('heading').textContent).toMatch("Shopping Cart");
-    screen.getByText("Items:");
-    screen.getByText("All our items");
-    screen.getByText("Today's deals");
-    screen.getByText("Today's deals");
-    screen.getByPlaceholderText(('Search'));
+  
+  it('should render a header "Shopping Cart" as a Link, checks for href attribute and id "store-logo"', () => {
+    const headerAsLink = screen.getByRole('link', {name: "Shopping Cart"})
+    expect(headerAsLink).toBeInTheDocument();
+    expect(headerAsLink).toHaveAttribute('href', "/");
   });
 });
+
+describe('Header section buttons', () => {
+  const buttonsClassName = "all-items-buttons";
+
+  it('should display the button "All our items" with the className of ' + buttonsClassName), () => {
+    const button1 = screen.getByRole('button', {name: button1})
+    expect(button1).toBeInTheDocument();
+    expect(button1).toHaveClass(buttonsClassName)
+  }
+  it(`should display the button "Today's deals" with the className of ` + buttonsClassName), () => {
+    const button2 = screen.getByRole('button', {name: "Today's deals"})
+    expect(button2).toBeInTheDocument();
+    expect(button2).toHaveClass(buttonsClassName);
+  }
+
+})
