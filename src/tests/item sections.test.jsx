@@ -1,4 +1,5 @@
 import AllItemsSection from "../components/all items section";
+import BestDealsSection from "../components/best deals section";
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
@@ -11,15 +12,13 @@ render(
   </MemoryRouter>
 );
 
-describe('AllItemsSection header', () => {
+describe('AllItemsSection section', () => {
   it('should render a header "All our products"', () => {
     const header = screen.getByRole('heading', { name: "All our products" });
     expect(header).toBeInTheDocument();
   });
-});
-
-describe('every item on section', () => {
-  it("should have a title, a button 'Add to cart', and an image", async () => {
+  
+  it("every item on section should have a title, a button 'Add to cart', and an image", async () => {
     await waitFor(() => {
       const items = document.querySelectorAll('.item');
       items.forEach(container => {
@@ -33,4 +32,8 @@ describe('every item on section', () => {
       })
     })
   })
-})
+});
+
+
+
+
