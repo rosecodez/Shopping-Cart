@@ -2,19 +2,13 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom'; 
 import Header from '../components/header';
 import { describe, it, expect } from 'vitest';
-import userEvent from '@testing-library/user-event'
-
-
-// the header is the parent component
-// contains buttons for the other sections rendering
 
 render(
-    <MemoryRouter> 
-      <Header />
-    </MemoryRouter>
-  );
+  <MemoryRouter> 
+    <Header />
+  </MemoryRouter>
+);
 describe('Header component', () => {
-  
   it('should render a header "Shopping Cart" as a Link, checks for href attribute, links to "/"', () => {
     const headerAsLink = screen.getByRole('link', {name: "Shopping Cart"})
     expect(headerAsLink).toBeInTheDocument();

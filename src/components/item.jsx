@@ -40,7 +40,6 @@ export default function Item({ itemUrl, addToCart}) {
     if (loading) return <p>Loading...</p>;
 
     return (
-        imageURL && title && price && (
         <div className="item">
             <div className="item-name-container">
                 <div className="item-name">{title}</div>
@@ -49,6 +48,6 @@ export default function Item({ itemUrl, addToCart}) {
             <button onClick={handleAddToCart} className="add-to-cart">Add to cart</button>
             <img src={imageURL} className="fetchedImages" alt={"Placeholder text"} />
         </div>
-    )
+
     );
 }

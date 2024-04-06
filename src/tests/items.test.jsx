@@ -1,6 +1,5 @@
 import { vi, describe, it, expect } from 'vitest';
-import Item from "../components/item";
-
+// mock the fetch for item
 const mockItem = {
     title: 'item',
     price: '100',
